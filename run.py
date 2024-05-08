@@ -14,8 +14,8 @@ if __name__ == "__main__":
     filer = Filer()
     organizer = Organizer()
 
-    df = filer.run(FILE1)
-    df_cancel = filer.run(FILE2)
+    df = filer.run(filename=FILE1, file_char="dados crus")
+    df_cancel = filer.run(filename=FILE2, file_char="dados de cancelamento")
     
     #organiza o excel em três planilhas diferentes
     df_destinatarios, df_fornecedores, df_nfe = organizer.run(df)

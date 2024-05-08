@@ -10,6 +10,7 @@ class Filer():
     def __init__(self):
         self.app_name = "The Filer"
         self.app_description = "The Filer is a program to open a spreadsheet"
+        self.file_char = ""
     
     def __open_file(self, filename: str) -> pd.DataFrame | None:
         try:
@@ -41,7 +42,7 @@ class Filer():
             filename = params[params.index('--file') + 1]
             del params[params.index('--file') + 1]
         else:
-            print(COLORS['blue'] + "CHOOSE:\t  Please, choose a file in 'spreadsheets' folder:\n"+ COLORS['reset'])
+            print(COLORS['blue'] + f"CHOOSE:\t  Please, choose a {self.file_char} file in 'spreadsheets' folder:\n"+ COLORS['reset'])
             folder_list = os.listdir('./spreadsheets/')
             folder_list = [s for s in folder_list if '.xlsx' in s or '.csv' in s]
             for i in range(len(folder_list)):
@@ -54,7 +55,8 @@ class Filer():
                 file_index = int(input(COLORS['blue'] + "ACTION:\t  Choose a valid number: "+ COLORS['reset']))
             filename = "./spreadsheets/" + folder_list[file_index - 1]
         return filename
-    def run(self, filename: str = None) -> pd.DataFrame:
+    def run(self, filename: str = None, file_char: str = "") -> pd.DataFrame:
+        self.file_char = file_char
         if filename is None:
             filename = self.__get_filename()
             if filename is None:

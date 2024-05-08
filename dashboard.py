@@ -7,8 +7,8 @@ st.set_page_config(page_title='Dashboard Sólida Construções Ltda', layout='wi
 
 if __name__ == '__main__':
     filer = Filer()
-    df = filer.run(filename='./spreadsheets/nfe.xlsx')
-    df_destinatarios = filer.run(filename='./spreadsheets/nfe-destinatarios.xlsx')
+    df = filer.run(filename='./spreadsheets-dashboard/nfe.xlsx')
+    df_destinatarios = filer.run(filename='./spreadsheets-dashboard/nfe-destinatarios.xlsx')
     df_resultado = pd.merge(df, df_destinatarios,left_on='Número da NF-e', right_on='Número da NF-e', how='left')
 
     with st.sidebar:

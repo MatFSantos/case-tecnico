@@ -4,37 +4,37 @@ from config import COLORS
 
 class Organizer:
     def __init__(self):
-        self.app_name = "The Organizer"
-        self.app_description = "The Organizer is a program to organize a spreadsheet"
+        self.app_name = "O Organizador"
+        self.app_description = "O Organizer é um programa para organizar planilhas"
 
     def __separator(self, df: pd.DataFrame, separator: str = ';')-> pd.DataFrame:
         columns = df.columns.tolist()[0].split(separator)
         new_df = pd.DataFrame(columns=columns)
         for i in range(len(df)):
             new_df.loc[i] = df.iloc[i, 0].split(separator)
-        print(COLORS['blue'] + "INFO:\t  Separated the dataframe from one column to several."+ COLORS['reset'])
+        print(COLORS['blue'] + "INFO:\t  Dataframe separado de uma coluna para várias."+ COLORS['reset'])
         return new_df
 
     def __turn_NA(self, df: pd.DataFrame) -> pd.DataFrame:
         df[df == ""] = pd.NA
-        print(COLORS['blue'] + "INFO:\t  Changed DataFrame values from '' to NaN."+ COLORS['reset'])
+        print(COLORS['blue'] + "INFO:\t  Valores '' no dataframe alterados para NaN."+ COLORS['reset'])
         return df
 
     def __remove_null_columns(self, df: pd.DataFrame) -> pd.DataFrame:
         null_per_col = df.isnull().sum()
         col_null = null_per_col[null_per_col == len(df)].index.tolist()
         new_df = df.drop(columns=col_null)
-        print(COLORS['blue'] + "INFO:\t  Removed null columns from DataFrame."+ COLORS['reset'])
+        print(COLORS['blue'] + "INFO:\t  Colunas nulas removidas do dataframe"+ COLORS['reset'])
         return new_df
 
     def __filter_df(self, df: pd.DataFrame, columns_not: list[str]) -> pd.DataFrame:
         new_df = df.drop(columns=columns_not)
-        print(COLORS['blue'] + f"INFO:\t  Filtered DataFrame removing specific columns."+ COLORS['reset'])
+        print(COLORS['blue'] + f"INFO:\t  Dataframe filtrado, removendo colunas específicas."+ COLORS['reset'])
         return new_df
 
     def save_df(self, df: pd.DataFrame, name: str) -> bool:
         df.to_excel(name,index=False)
-        print(COLORS['blue'] + f"INFO:\t  Saved DataFrame in {name}."+ COLORS['reset'])
+        print(COLORS['blue'] + f"INFO:\t  Dataframe salvo em {name}."+ COLORS['reset'])
         return True
     
     def run(self, df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:

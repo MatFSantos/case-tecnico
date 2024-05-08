@@ -19,12 +19,12 @@ class Filer():
             elif filename.endswith('.xlsx'):
                 file = self.__open_excel(filename)
             else:
-                print(COLORS['red'] + f"ERROR:\t  The file '{filename}' is not a valid CSV or Excel file."+ COLORS['reset'])
+                print(COLORS['red'] + f"ERROR:\t  O arquivo '{filename}' não é um CSV ou Excel válido."+ COLORS['reset'])
                 return None
         except Exception as e:
-            print(COLORS['red'] + f"ERROR:\t  An error occurred while opening the file '{filename}': {str(e)}"+ COLORS['reset'])
+            print(COLORS['red'] + f"ERROR:\t  Um erro ocorreu enquanto o aquivo '{filename}' era aberto: {str(e)}"+ COLORS['reset'])
             return None
-        print(COLORS['blue'] +f"INFO:\t  File '{filename}' opened successfully."+ COLORS['reset'])
+        print(COLORS['blue'] +f"INFO:\t  Arquivo '{filename}' aberto com sucesso."+ COLORS['reset'])
         return file
     
     def __open_csv(self, filename: str)-> pd.DataFrame:
@@ -37,22 +37,22 @@ class Filer():
         params = sys.argv
         if '--file' in params:
             if params.index('--file') + 1 > len(params):
-                print(COLORS['red'] + f"ERROR:\t  Missing the file name right after the '--file' flag."+ COLORS['reset'])
+                print(COLORS['red'] + f"ERROR:\t  Nome do arquivo faltando após a flag '--file'." + COLORS['reset'])
                 return None
             filename = params[params.index('--file') + 1]
             del params[params.index('--file') + 1]
         else:
-            print(COLORS['blue'] + f"CHOOSE:\t  Please, choose a {self.file_char} file in 'spreadsheets' folder:\n"+ COLORS['reset'])
+            print(COLORS['blue'] + f"CHOOSE:\t  Por favor, escolha um arquivo de {self.file_char} na pasta 'spreadsheets':\n"+ COLORS['reset'])
             folder_list = os.listdir('./spreadsheets/')
             folder_list = [s for s in folder_list if '.xlsx' in s or '.csv' in s]
             for i in range(len(folder_list)):
                 print(COLORS['white'] + f"\t{i + 1}." + COLORS['blue'] +  f" {folder_list[i]}"+ COLORS['reset'])
             
             file_index = 0
-            file_index = int(input(COLORS['blue'] + "ACTION:\t  Choose a number: "+ COLORS['reset']))
+            file_index = int(input(COLORS['blue'] + "ACTION:\t  Escolha um número: "+ COLORS['reset']))
             while file_index < 1 or file_index > len(folder_list):
-                print(COLORS['red'] + f"ERROR:\t  You didn't specify a valid file number."+ COLORS['reset'])
-                file_index = int(input(COLORS['blue'] + "ACTION:\t  Choose a valid number: "+ COLORS['reset']))
+                print(COLORS['red'] + f"ERROR:\t  Você não especificou um número válido."+ COLORS['reset'])
+                file_index = int(input(COLORS['blue'] + "ACTION:\t  Escolha um número válido: "+ COLORS['reset']))
             filename = "./spreadsheets/" + folder_list[file_index - 1]
         return filename
     def run(self, filename: str = None, file_char: str = "") -> pd.DataFrame:

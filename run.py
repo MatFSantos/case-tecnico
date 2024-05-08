@@ -30,13 +30,13 @@ if __name__ == "__main__":
         organizer.save_df(df_fornecedores, './spreadsheets/nfe-fornecedores.xlsx')
         organizer.save_df(df_resultado, './spreadsheets/nfe.xlsx')
     else:
-        print(COLORS['blue'] + "CHOOSE:\t  Do you want to save the organization result?:\n" + COLORS['reset'])
-        print(COLORS['blue'] + "\t 1." + COLORS['blue'] + " Yes"+ COLORS['reset'])
-        print(COLORS['blue'] + "\t 2." + COLORS['blue'] + " No"+ COLORS['reset'])
-        val = int(input(COLORS['blue'] + "ACTION:\t  Choose a number: "+ COLORS['reset']))
+        print(COLORS['blue'] + "CHOOSE:\t  Você quer salvar o resultado da organização?:\n" + COLORS['reset'])
+        print(COLORS['blue'] + "\t 1." + COLORS['blue'] + " Sim"+ COLORS['reset'])
+        print(COLORS['blue'] + "\t 2." + COLORS['blue'] + " Não"+ COLORS['reset'])
+        val = int(input(COLORS['blue'] + "ACTION:\t  Escolha um número: "+ COLORS['reset']))
         while val < 1 or val > 2:
-            print(COLORS['red'] + f"ERROR:\t  You didn't specify a valid file number."+ COLORS['reset'])
-            val = int(input(COLORS['blue'] + "ACTION:\t  Choose a valid number: "+ COLORS['reset']))
+            print(COLORS['red'] + f"ERROR:\t  Você não especificou um número válido."+ COLORS['reset'])
+            val = int(input(COLORS['blue'] + "ACTION:\t  Escolha um número válido: "+ COLORS['reset']))
         if val == 1:
             organizer.save_df(df_destinatarios, './spreadsheets/nfe-destinatarios.xlsx')
             organizer.save_df(df_fornecedores, './spreadsheets/nfe-fornecedores.xlsx')

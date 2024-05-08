@@ -1,5 +1,6 @@
 import pandas as pd
 from filer import Filer
+from config import COLORS
 
 class Organizer:
     def __init__(self):
@@ -11,29 +12,29 @@ class Organizer:
         new_df = pd.DataFrame(columns=columns)
         for i in range(len(df)):
             new_df.loc[i] = df.iloc[i, 0].split(separator)
-        print("INFO:\t  Separated the dataframe from one column to several.")
+        print(COLORS['blue'] + "INFO:\t  Separated the dataframe from one column to several."+ COLORS['reset'])
         return new_df
 
     def __turn_NA(self, df: pd.DataFrame) -> pd.DataFrame:
         df[df == ""] = pd.NA
-        print("INFO:\t  Changed DataFrame values from '' to NaN.")
+        print(COLORS['blue'] + "INFO:\t  Changed DataFrame values from '' to NaN."+ COLORS['reset'])
         return df
 
     def __remove_null_columns(self, df: pd.DataFrame) -> pd.DataFrame:
         null_per_col = df.isnull().sum()
         col_null = null_per_col[null_per_col == len(df)].index.tolist()
         new_df = df.drop(columns=col_null)
-        print("INFO:\t  Removed null columns from DataFrame.")
+        print(COLORS['blue'] + "INFO:\t  Removed null columns from DataFrame."+ COLORS['reset'])
         return new_df
 
     def __filter_df(self, df: pd.DataFrame, columns_not: list[str]) -> pd.DataFrame:
         new_df = df.drop(columns=columns_not)
-        print(f"INFO:\t  Filtered DataFrame removing specific columns.")
+        print(COLORS['blue'] + f"INFO:\t  Filtered DataFrame removing specific columns."+ COLORS['reset'])
         return new_df
 
     def save_df(self, df: pd.DataFrame, name: str) -> bool:
         df.to_excel(name,index=False)
-        print(f"INFO:\t  Saved DataFrame in {name}.")
+        print(COLORS['blue'] + f"INFO:\t  Saved DataFrame in {name}."+ COLORS['reset'])
         return True
     
     def run(self, df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:

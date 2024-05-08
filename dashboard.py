@@ -54,3 +54,5 @@ if __name__ == '__main__':
     df_filtered = df_resultado[(df_resultado['Razão Social Destinatário'] == destinatario) & (df_resultado['Situação'] == 'Cancelado')]
     fig = px.bar(df_filtered, y="Motivo de cancelamento", title="Motivo de cancelamento por destinatário", orientation="h")
     col4.plotly_chart(fig, use_container_width=True)
+
+    df_resultado

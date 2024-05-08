@@ -37,7 +37,7 @@ $ python run.py --save --file ./spreadsheets/dados.xlsx ./spreadsheet/codigo_can
 
 > OBS: caso não seja passada a flag `--file`, o script perguntará para o usuário qual arquivo ele deseja utilizar dos arquivos que estão dentro da pasta `spreadsheets/`.
 
-> OBS: caso não seja passada a flag `--save`, o script não salvará o resultado e somente fará o processo de organização das planilhas e imprimirá o resultado no promp.
+> OBS: caso não seja passada a flag `--save`, o script perguntará para o usuário se deseja salvar o resultado da organização
 
 ### Dashborad interativo
 
